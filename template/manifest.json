@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "typescript-editor",
+  "version": "1.0.0",
+  "description": "A extension allows you to run typescript code in browser",
+  "permissions": [
+    "activeTab",
+    "<all_urls>",
+    "*://*/*"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "devtools_page": "devtools.html"
+}

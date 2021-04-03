@@ -1,0 +1,1 @@
+chrome.devtools.panels.create('typescript-editor', '', 'devtools.html', () => {});
