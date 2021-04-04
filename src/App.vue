@@ -13,12 +13,13 @@ import { browser } from 'webextension-polyfill-ts';
 export default class App extends Vue {
   private txt = 'Hello World 123 typescript';
   private monacoEditor = null;
-  private originCode = 'console.log(123123)';
+  private originCode = `/* press ctrl+s or cmd+s to run the code 123 */\n`;
   private mounted() {
     this.monacoEditor = monaco.editor.create((this.$refs as any).editor, {
       value: this.originCode,
       language: 'typescript',
       theme: 'vs-dark',
+      tabSize: 2,
     });
     this.monacoEditor.onDidChangeModelContent(() => {
       this.change(this.monacoEditor.getValue());
@@ -37,7 +38,11 @@ export default class App extends Vue {
   private runCode() {
     const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
     console.log(result)
-    browser.devtools.inspectedWindow.eval(result.outputText);
+    browser.tabs.executeScript(undefined, {code: result.outputText}).then(res => {
+      if (browser.runtime.lastError) {
+        browser.tabs.executeScript(undefined, { code: `console.error(${browser.runtime.lastError.message})` })
+      }
+    });
   }
   private registerResizeListener() {
     window.addEventListener('resize', this.resizeEditor.bind(this));

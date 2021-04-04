@@ -6,6 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin")
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
+const ChromeExtensionReloader  = require('webpack-extension-reloader')
 
 const path = require('path')
 
@@ -13,8 +14,10 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 const isAnalyzeMode = process.env.ANALYZE || false
 
 const config = {
+  mode: isDevelopment ? 'development' : 'production',
   entry: {
-    vendor: path.resolve(__dirname, 'src/main.ts')
+    vendor: path.resolve(__dirname, 'src/main.ts'),
+    background: path.resolve(__dirname, 'src/background/index.js')
   },
   output: {
     filename: '[name].js',
@@ -33,8 +36,9 @@ const config = {
     }),
     isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
     isAnalyzeMode ? new BundleAnalyzerPlugin() : null,
+    isDevelopment ? new ChromeExtensionReloader() : null,
   ].filter(Boolean),
-  optimization: isDevelopment ? null : {
+  optimization: isDevelopment ? {} : {
     minimize: true,
     minimizer: [new TerserPlugin({
       terserOptions: {
@@ -94,6 +98,11 @@ const config = {
     publicPath: '/',
     port: 9000, // Visit localhost:9000/webpack-dev-server, and  You can see all files here
     hot: true,
+  },
+  watch: isDevelopment,
+  watchOptions: {
+    ignored: /node_modules/,
+    poll: 1000
   }
 }
 

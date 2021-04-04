@@ -6,7 +6,9 @@
   "permissions": [
     "activeTab",
     "<all_urls>",
-    "*://*/*"
+    "*://*/*",
+    "management",
+    "tabs"
   ],
   "background": {
     "scripts": [
@@ -14,5 +16,6 @@
     ],
     "persistent": false
   },
-  "devtools_page": "devtools.html"
+  "devtools_page": "devtools.html",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
