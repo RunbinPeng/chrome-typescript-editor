@@ -37,7 +37,7 @@ export default class App extends Vue {
   private runCode() {
     const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
     console.log(result)
-    // browser.devtools.inspectedWindow.eval(result.outputText);
+    browser.devtools.inspectedWindow.eval(result.outputText);
   }
   private registerResizeListener() {
     window.addEventListener('resize', this.resizeEditor.bind(this));
@@ -51,6 +51,10 @@ export default class App extends Vue {
 }
 </script>
 <style lang="scss">
+body {
+  margin: 0;
+  overflow: hidden;
+}
 .editor-container {
   height:  100vh;
   width: 100vw;

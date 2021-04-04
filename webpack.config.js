@@ -22,7 +22,7 @@ const config = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new CleanWebpackPlugin(),
+    isDevelopment ? null : new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, 'template') }
@@ -44,6 +44,8 @@ const config = {
         }
       },
       extractComments: false,
+      exclude: /node_modules/,
+      parallel: true, // Use multi-process parallel running to improve the build speed
     })],
   },
   module: {
@@ -67,7 +69,8 @@ const config = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/i,
