@@ -11,7 +11,6 @@ import { browser } from 'webextension-polyfill-ts';
 
 @Component
 export default class App extends Vue {
-  private txt = 'Hello World 123 typescript';
   private monacoEditor = null;
   private originCode = `/* press ctrl+s or cmd+s to run the code */\n`;
   private mounted() {
