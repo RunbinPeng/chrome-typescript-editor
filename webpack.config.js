@@ -7,6 +7,8 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
 const ChromeExtensionReloader  = require('webpack-extension-reloader')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssWebpackPlugin = require('mini-css-extract-plugin')
 
 const path = require('path')
 
@@ -17,7 +19,9 @@ const config = {
   mode: isDevelopment ? 'development' : 'production',
   entry: {
     vendor: path.resolve(__dirname, 'src/main.ts'),
-    background: path.resolve(__dirname, 'src/background/index.js')
+    background: path.resolve(__dirname, 'src/background/index.ts'),
+    devtools: path.resolve(__dirname, 'src/devtools/index.ts'),
+    ['content-script']: path.resolve(__dirname, 'src/content-script/index.ts')
   },
   output: {
     filename: '[name].js',
@@ -28,7 +32,7 @@ const config = {
     isDevelopment ? null : new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'template') }
+        { from: path.resolve(__dirname, 'src/manifest.json') }
       ]
     }),
     new MonacoWebpackPlugin({
@@ -37,6 +41,13 @@ const config = {
     isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
     isAnalyzeMode ? new BundleAnalyzerPlugin() : null,
     isDevelopment ? new ChromeExtensionReloader() : null,
+    new HtmlWebpackPlugin({
+      filename: 'devtools.html',
+      template: 'template/index.html',
+      inject: 'body',
+      chunks: ['vendor', 'devtools']
+    }),
+    new MiniCssWebpackPlugin(),
   ].filter(Boolean),
   optimization: isDevelopment ? {} : {
     minimize: true,
@@ -78,11 +89,11 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [ "vue-style-loader", "css-loader", "sass-loader" ],
+        use: [MiniCssWebpackPlugin.loader, "css-loader", "sass-loader" ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [MiniCssWebpackPlugin.loader, 'css-loader']
       },
       {
         test: /\.ttf$/,
