@@ -4,10 +4,10 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-;import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { Component, Vue } from 'vue-property-decorator';
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import * as ts from 'typescript';
-import { browser } from 'webextension-polyfill-ts';
+import { runCode } from './utils';
 
 @Component
 export default class App extends Vue {
@@ -36,16 +36,7 @@ export default class App extends Vue {
   }
   private runCode() {
     const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
-    console.log(result)
-    try {
-      browser.tabs.executeScript(undefined, {code: result.outputText}).then(res => {
-        if (browser.runtime.lastError) {
-          browser.tabs.executeScript(undefined, { code: `console.error(${browser.runtime.lastError.message})` })
-        }
-      });
-    } catch(e) {
-
-    }
+    runCode(result.outputText);
   }
   private registerResizeListener() {
     window.addEventListener('resize', this.resizeEditor.bind(this));
