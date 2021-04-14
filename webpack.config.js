@@ -9,6 +9,7 @@ const webpack = require('webpack')
 const ChromeExtensionReloader  = require('webpack-extension-reloader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssWebpackPlugin = require('mini-css-extract-plugin')
+const NodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin')
 
 const path = require('path')
 
@@ -32,7 +33,8 @@ const config = {
     isDevelopment ? null : new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src/manifest.json') }
+        { from: path.resolve(__dirname, 'src/manifest.json') },
+        { from: path.resolve(__dirname, 'template') }
       ]
     }),
     new MonacoWebpackPlugin({
@@ -48,6 +50,7 @@ const config = {
       chunks: ['vendor', 'devtools']
     }),
     new MiniCssWebpackPlugin(),
+    new NodePolyfillWebpackPlugin(),
   ].filter(Boolean),
   optimization: isDevelopment ? {} : {
     minimize: true,
@@ -102,12 +105,15 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
+    fallback: {
+      fs: false,
+    }
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     publicPath: '/',
-    port: 9000, // Visit localhost:9000/webpack-dev-server, and  You can see all files here
+    port: 9001, // Visit /webpack-dev-server, and  You can see all files here
     hot: true,
   },
   watch: isDevelopment,

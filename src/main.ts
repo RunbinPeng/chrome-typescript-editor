@@ -1,7 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue'
+import { loadWASM } from 'onigasm';
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+// load wasm
+(async () => {
+  await loadWASM('./onigasm.wasm');
+  new Vue({
+    el: '#app',
+    render: h => h(App)
+  })
+})();

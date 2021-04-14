@@ -7,7 +7,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import * as ts from 'typescript';
-import { runCode } from './utils';
+import { runCode, liftOff } from './utils';
+import vscodeTheme from './themes/vscode-theme';
 
 @Component
 export default class App extends Vue {
@@ -17,7 +18,6 @@ export default class App extends Vue {
     this.monacoEditor = monaco.editor.create((this.$refs as any).editor, {
       value: this.originCode,
       language: 'typescript',
-      theme: 'vs-dark',
       tabSize: 2,
     });
     this.monacoEditor.onDidChangeModelContent(() => {
@@ -27,6 +27,8 @@ export default class App extends Vue {
       this.runCode();
     });
     this.registerResizeListener();
+    monaco.editor.defineTheme('customTheme', vscodeTheme as any);
+    liftOff(monaco, this.monacoEditor).then(() => monaco.editor.setTheme('customTheme'));
   }
   private beforeDestroy() {
     this.removeResizeListener();

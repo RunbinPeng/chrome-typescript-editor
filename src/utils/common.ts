@@ -16,7 +16,7 @@ export async function runCode(code: string) {
           browser.tabs.executeScript(undefined, { code: `console.error(${browser.runtime.lastError.message})` })
         }
       });
-    } catch(e) {}
+    } catch (e) { }
   } else {
     eval(code);
   }
