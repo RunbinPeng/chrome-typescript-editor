@@ -9,6 +9,7 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import * as ts from 'typescript';
 import { runCode, liftOff } from './utils';
 import vscodeTheme from './themes/vscode-theme';
+import { convertTheme } from './monaco-vscode-textmate-theme-converter';
 
 @Component
 export default class App extends Vue {
@@ -27,7 +28,7 @@ export default class App extends Vue {
       this.runCode();
     });
     this.registerResizeListener();
-    monaco.editor.defineTheme('customTheme', vscodeTheme as any);
+    monaco.editor.defineTheme('customTheme', { ...convertTheme(vscodeTheme), inherit: true });
     liftOff(monaco, this.monacoEditor).then(() => monaco.editor.setTheme('customTheme'));
   }
   private beforeDestroy() {

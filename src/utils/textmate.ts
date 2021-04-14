@@ -1,5 +1,3 @@
-
-import { convertTheme } from 'monaco-vscode-textmate-theme-converter/lib/cjs';
 import { Registry } from 'monaco-textmate';
 import { wireTmGrammars } from '../monaco-editor-textmate';
 const registry = new Registry({
