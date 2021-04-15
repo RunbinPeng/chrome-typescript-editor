@@ -1,14 +1,14 @@
-const IsDev = process.env.NODE_ENV === 'development';
+const IsExtensionEnv = process.env.EXTENSION || false;
 
 export async function createDevtoolPanel() {
-  if (!IsDev) {
+  if (!IsExtensionEnv) {
     const { browser } = await import('webextension-polyfill-ts');
     browser.devtools.panels.create('typescript-editor', '', 'devtools.html');
   }
 }
 
 export async function runCode(code: string) {
-  if (!IsDev) {
+  if (!IsExtensionEnv) {
     const { browser } = await import('webextension-polyfill-ts');
     try {
       browser.tabs.executeScript(undefined, { code }).then(res => {

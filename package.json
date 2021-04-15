@@ -5,7 +5,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js --progress",
     "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js --progress",
-    "start": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress",
+    "start": "cross-env NODE_ENV=development EXTENSION=true webpack --config webpack.config.js --progress",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
   "author": "RunbinPeng",
