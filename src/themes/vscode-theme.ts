@@ -310,7 +310,7 @@ export default {
     {
       "scope": "keyword",
       "settings": {
-        "foreground": "#569cd6"
+        "foreground": "#d4d4d4"
       }
     },
     {
