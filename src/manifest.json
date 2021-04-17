@@ -1,20 +1,17 @@
 {
   "manifest_version": 2,
-  "name": "typescript-editor",
+  "name": "TypeScript Editor",
   "version": "1.0.0",
-  "description": "A extension allows you to run typescript code in browser",
+  "description": "Run TypeScript or JavaScript code in devtools panel, and can check output in console panel.",
   "permissions": [
-    "activeTab",
     "<all_urls>",
-    "*://*/*",
-    "management",
     "tabs"
   ],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+  "icons": {
+    "16": "logo.png",
+    "32": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
   },
   "devtools_page": "devtools.html",
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"

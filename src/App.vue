@@ -14,7 +14,7 @@ import { convertTheme } from './monaco-vscode-textmate-theme-converter';
 @Component
 export default class App extends Vue {
   private monacoEditor = null;
-  private originCode = `/* press ctrl+s or cmd+s to run the code */\n`;
+  private originCode = `/* Press ctrl+s or cmd+s to run the code */\n`;
   private mounted() {
     this.monacoEditor = monaco.editor.create((this.$refs as any).editor, {
       value: this.originCode,
