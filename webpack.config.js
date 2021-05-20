@@ -51,6 +51,9 @@ const config = {
     }),
     new MiniCssWebpackPlugin(),
     new NodePolyfillWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.EXTENSION': JSON.stringify(process.env.EXTENSION)
+    })
   ].filter(Boolean),
   optimization: isDevelopment ? {} : {
     minimize: true,
