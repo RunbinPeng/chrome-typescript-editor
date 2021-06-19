@@ -38,7 +38,7 @@ export default class App extends Vue {
     this.originCode = value;
   }
   private runCode() {
-    const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
+    const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS, inlineSourceMap: true, inlineSources: true } });
     runCode(result.outputText);
   }
   private registerResizeListener() {

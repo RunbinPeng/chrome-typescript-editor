@@ -11,11 +11,7 @@ export async function runCode(code: string) {
   if (IsExtensionEnv) {
     const { browser } = await import('webextension-polyfill-ts');
     try {
-      const res = await browser.devtools.inspectedWindow.eval(code);
-      if (res[1]) {
-        const errMsgCode = `console.error(${JSON.stringify(res[1].value)})`;
-        browser.devtools.inspectedWindow.eval(errMsgCode);
-      }
+      const res = await browser.tabs.executeScript(undefined, { code })
     } catch (e) { }
   } else {
     eval(code);
