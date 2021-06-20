@@ -1,5 +1,5 @@
 <template>
-  <a-drawer :visible="visible" @close="$emit('close')" :width="400">
+  <a-drawer class="drawer" :visible="visible" @close="$emit('close')" width="40vw">
     <h3 class="section-title">CDN Url</h3>
     <a-input-search placeholder="Input a CDN url" @search="onAddCdnUrl">
       <a-button slot="enterButton">
@@ -66,7 +66,6 @@ export default class SideBar extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-  
 .result-list {
   padding-left: 24px;
 }

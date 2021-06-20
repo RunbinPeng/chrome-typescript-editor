@@ -126,6 +126,7 @@ const config = {
     extensions: ['.tsx', '.ts', '.js'],
     fallback: {
       fs: false,
+      process: false,
     }
   },
   devServer: {

@@ -27,13 +27,14 @@ export default class Index extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+$footer-height: 50px;
 .editor-container {
-  height:  95vh;
+  height: calc(100vh - #{$footer-height});
   width: 100vw;
   background: red;
 }
 .footer {
   background: rgba(0,0,0,0.87);
-  height: 5vh;
+  height: $footer-height;
 }
 </style>
