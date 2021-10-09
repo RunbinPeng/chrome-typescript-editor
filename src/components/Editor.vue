@@ -38,7 +38,8 @@ export default class Editor extends Vue {
     this.originCode = value;
   }
   private runCode() {
-    const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS, inlineSourceMap: true, inlineSources: true } });
+    const fileName = 'editor-' + Math.floor(Math.random() * 1000000);
+    const result = ts.transpileModule(this.originCode, { compilerOptions: { module: ts.ModuleKind.CommonJS, inlineSourceMap: true, inlineSources: true }, fileName });
     runCode(result.outputText);
   }
   private registerResizeListener() {

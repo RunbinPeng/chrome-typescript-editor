@@ -31,10 +31,9 @@ $footer-height: 50px;
 .editor-container {
   height: calc(100vh - #{$footer-height});
   width: 100vw;
-  background: red;
 }
 .footer {
-  background: rgba(0,0,0,0.87);
+  background: rgba(31, 30, 30, 0.87);
   height: $footer-height;
 }
 </style>
