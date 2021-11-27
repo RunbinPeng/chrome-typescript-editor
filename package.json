@@ -4,7 +4,7 @@
   "description": "A chrome extension that allows you to run typescript code in browser",
   "scripts": {
     "build": "cross-env NODE_ENV=production EXTENSION=true webpack --config webpack.config.js --progress",
-    "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --progress",
+    "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js --progress",
     "start": "cross-env NODE_ENV=development EXTENSION=true webpack --config webpack.config.js --progress",
     "analyze": "cross-env ANALYZE=true yarn build"
   },
@@ -51,7 +51,6 @@
     "monaco-textmate": "^3.0.1",
     "monaco-vscode-textmate-theme-converter": "^0.1.1",
     "onigasm": "^2.2.5",
-    "quicktype-core": "^6.0.70",
     "typescript": "^4.2.3",
     "vue": "^2.6.12",
     "vue-class-component": "^7.2.6",
