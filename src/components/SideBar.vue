@@ -1,7 +1,7 @@
 <template>
   <a-drawer class="drawer" :visible="visible" @close="$emit('close')" width="40vw">
-    <h3 class="section-title">CDN Url</h3>
-    <a-input-search placeholder="Input a CDN url" @search="onAddCdnUrl">
+    <h3 class="section-title">CDN</h3>
+    <a-input-search placeholder="Input a cdn url" @search="onAddCdnUrl">
       <a-button slot="enterButton">
         Add
       </a-button>
