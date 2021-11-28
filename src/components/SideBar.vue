@@ -8,7 +8,10 @@
     </a-input-search>
     <h3 class="section-title">Search Packages</h3>
     <a-input @change="onInput"></a-input>
-    <ul class="result-list">
+    <div v-if="loading" class="loading-container">
+      <a-spin  tip="Loading..."></a-spin>
+    </div>
+    <ul v-else class="result-list">
       <li class="result-item" v-for="(item, index) in list" :key="index" @click="injectPackage(item)">
         {{ item.name + '@' + item.version }}
       </li>
@@ -26,6 +29,7 @@ export default class SideBar extends Vue {
 
   private list = [];
   private timer = null;
+  private loading = false;
 
   private onAddCdnUrl(url: string) {
     if (url.trim()) {
@@ -36,7 +40,9 @@ export default class SideBar extends Vue {
   private async onInput(event: InputEvent) {
     const { value } = event.target as HTMLInputElement;
     this.debounce(async () => {
+      this.loading = true;
       const res = await axios.get('https://www.npmjs.com/search/suggestions?q=' + value);
+      this.loading = false;
       this.list = res.data;
     }, 500)
   }
@@ -78,5 +84,9 @@ export default class SideBar extends Vue {
   &:first-child {
     margin-top: 0;
   }
+}
+.loading-container {
+  text-align: center;
+  margin-top: 16px;
 }
 </style>
