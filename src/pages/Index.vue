@@ -35,5 +35,6 @@ $footer-height: 50px;
 .footer {
   background: rgba(31, 30, 30, 0.87);
   height: $footer-height;
+  line-height: $footer-height;
 }
 </style>
