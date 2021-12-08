@@ -2,10 +2,11 @@
   "manifest_version": 2,
   "name": "TypeScript Editor",
   "version": "1.0.0",
-  "description": "Run TypeScript or JavaScript code in devtools panel, then you can check output in console panel.",
+  "description": "An extension allows you to run TypeScript or JavaScript Code in browser.",
   "permissions": [
-    "<all_urls>",
-    "tabs"
+    "activeTab",
+    "tabs",
+    "https://www.npmjs.com/*"
   ],
   "icons": {
     "16": "logo.png",
