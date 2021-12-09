@@ -10,8 +10,10 @@ const ChromeExtensionReloader  = require('webpack-extension-reloader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssWebpackPlugin = require('mini-css-extract-plugin')
 const NodePolyfillWebpackPlugin = require('node-polyfill-webpack-plugin')
+const ZipPlugin = require('zip-webpack-plugin')
 
 const path = require('path')
+const CHROME_MANIFEST = require('./src/manifest.json')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 const isAnalyzeMode = process.env.ANALYZE || false
@@ -53,7 +55,11 @@ const config = {
     new NodePolyfillWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env.EXTENSION': JSON.stringify(process.env.EXTENSION)
-    })
+    }),
+    isDevelopment ? null : new ZipPlugin({
+      path: path.resolve(__dirname, 'zip'),
+      filename: `TypeScript-Editor-${CHROME_MANIFEST.version}.zip`,
+    }),
   ].filter(Boolean),
   optimization: isDevelopment ? {} : {
     minimize: true,

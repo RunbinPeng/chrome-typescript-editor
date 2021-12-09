@@ -26,3 +26,6 @@ pnpm-debug.log*
 *.pem
 *.pub
 /artifacts
+
+# Custom Directory
+zip
