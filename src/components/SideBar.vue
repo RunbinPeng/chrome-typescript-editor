@@ -39,12 +39,26 @@ export default class SideBar extends Vue {
 
   private async onInput(event: InputEvent) {
     const { value } = event.target as HTMLInputElement;
-    this.debounce(async () => {
-      this.loading = true;
-      const res = await axios.get('https://www.npmjs.com/search/suggestions?q=' + value);
-      this.loading = false;
-      this.list = res.data;
+    this.debounce(() => {
+      this.fetchPackageList(value);
     }, 500)
+  }
+
+  private async fetchPackageList(keyword: string) {
+    try {
+      if (!keyword) {
+        return;
+      }
+      this.loading = true;
+      this.list = [];
+      const res = await axios.get('https://www.npmjs.com/search/suggestions?q=' + keyword);
+      this.list = res.data;
+      return res;
+    } catch(error) {
+      this.$message.error('Network error, please try again!')
+    } finally {
+      this.loading = false;
+    }
   }
 
   private injectPackage(item) {
