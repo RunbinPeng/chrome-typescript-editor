@@ -378,6 +378,11 @@
   dependencies:
     source-map "^0.6.1"
 
+"@types/webextension-polyfill@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.npmjs.org/@types/webextension-polyfill/-/webextension-polyfill-0.12.1.tgz#8dae244fe094cbb541005362e8e22f16671f6054"
+  integrity sha512-xPTFWwQ8BxPevPF2IKsf4hpZNss4LxaOLZXypQH4E63BDLmcwX/RMGdI4tB4VO4Nb6xDBH3F/p4gz4wvof1o9w==
+
 "@types/webpack-sources@*":
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/@types/webpack-sources/download/@types/webpack-sources-2.1.0.tgz#8882b0bd62d1e0ce62f183d0d01b72e6e82e8c10"
@@ -5540,22 +5545,15 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webextension-polyfill-ts@^0.25.0:
-  version "0.25.0"
-  resolved "https://registry.npm.taobao.org/webextension-polyfill-ts/download/webextension-polyfill-ts-0.25.0.tgz#fff041626365dbd0e29c40b197e989a55ec221ca"
-  integrity sha1-//BBYmNl29DinECxl+mJpV7CIco=
-  dependencies:
-    webextension-polyfill "^0.7.0"
+webextension-polyfill@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.npmjs.org/webextension-polyfill/-/webextension-polyfill-0.12.0.tgz#f62c57d2cd42524e9fbdcee494c034cae34a3d69"
+  integrity sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==
 
 webextension-polyfill@^0.5.0:
   version "0.5.0"
   resolved "https://registry.npm.taobao.org/webextension-polyfill/download/webextension-polyfill-0.5.0.tgz#795e0bf6a2b8eadcdb6edaecd169e9228c747519"
   integrity sha1-eV4L9qK46tzbbtrs0WnpIox0dRk=
-
-webextension-polyfill@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.npm.taobao.org/webextension-polyfill/download/webextension-polyfill-0.7.0.tgz#0df1120ff0266056319ce1a622b09ad8d4a56505"
-  integrity sha1-DfESD/AmYFYxnOGmIrCa2NSlZQU=
 
 webpack-bundle-analyzer@^4.4.0:
   version "4.4.0"

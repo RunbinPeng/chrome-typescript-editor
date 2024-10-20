@@ -145,7 +145,8 @@ const config = {
   watchOptions: {
     ignored: /node_modules/,
     poll: 1000
-  }
+  },
+  devtool: false,
 }
 
 module.exports = config

@@ -4,6 +4,9 @@
 
 An extension used in Google Chrome, can let you write down TypeScript or JavaScript code in Devtools Panel, and show output in Console Panel.
 
+## Installation
+[Chrome Extension TypeScript Editor](https://chrome.google.com/webstore/detail/typescript-editor/amljndfnogpalkfjcfohnepgnhfcpamk)
+
 ## Development
 
 ```bash
